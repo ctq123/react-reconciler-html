@@ -12,16 +12,51 @@ let reconciler = ReactReconciler({
         internalInstanceHandle,
     ) {
         console.log(type, props);
+        let el = document.createElement(type);
+        if (props.className) el.className = props.className;
+        if (props.src) el.src = props.src;
+        ['alt', 'className', 'src', 'href', 'target', 'rel'].forEach(k => {
+            if (props[k]) el[k] = props[k]
+        })
+        if (props.onClick) {
+            el.addEventListener('click', props.onClick);
+        }
+        if (props.bgColor) {
+            el.style.backgroundColor = props.bgColor;
+        }
+        return el;
     },
     createTextInstance(
         text,
         rootContainerInstance,
         hostContext,
         internalInstanceHandle,
-    ) {},
-    appendChildToContainer(container, child) {},
-    appendChild(parent, child) {},
-    appendInitialChild(parent, child) {},
+    ) {
+        // <div>click here: <button /></div>
+        return document.createTextNode(text);
+    },
+    appendChildToContainer(container, child) {
+        container.appendChild(child);
+    },
+    appendChild(parent, child) {
+        parent.appendChild(child);
+    },
+    appendInitialChild(parent, child) {
+        parent.appendChild(child);
+    },
+
+    removeChildFromContainer(container, child) {
+        container.removeChild(child);
+    },
+    removeChild(parent, child) {
+        parent.removeChild(child);
+    },
+    insertInContainerBefore(container, child, before) {
+        container.insertBefore(child, before);
+    },
+    insertBefore(parent, child, before) {
+        parent.insertBefore(child, before);
+    },
 
     prepareUpdate(
         instance,
@@ -30,7 +65,13 @@ let reconciler = ReactReconciler({
         newProps,
         rootContainerInstance,
         currentHostContext,
-    ) {},
+    ) {
+        let payload;
+        if (oldProps.bgColor !== newProps.bgColor) {
+            payload = { newBgColor: newProps.bgColor };
+        }
+        return payload;
+    },
 
     commitUpdate(
         instance,
@@ -39,7 +80,11 @@ let reconciler = ReactReconciler({
         oldProps,
         newProps,
         finishedWork,
-    ) {},
+    ) {
+        if (updatePayload.newBgColor) {
+            instance.style.backgroundColor = updatePayload.newBgColor;
+        }
+    },
 
     finalizeInitialChildren() {},
     getChildHostContext() {},
