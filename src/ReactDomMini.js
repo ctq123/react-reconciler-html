@@ -24,7 +24,8 @@ let reconciler = ReactReconciler({
     appendInitialChild(parent, child) {},
     removeChildFromContainer(container, child) {},
     removeChild(parent, child) {},
-    
+    insertInContainerBefore(container, child, beforeChild) {},
+    insertBefore(container, child, beforeChild) {},
 
     prepareUpdate(
         instance,
@@ -43,13 +44,7 @@ let reconciler = ReactReconciler({
         newProps,
         finishedWork,
     ) {},
-
-    finalizeInitialChildren() {},
-    getChildHostContext() {},
-    getPublicInstance() {},
-    getRootHostContext() {},
-    prepareForCommit() {},
-    resetAfterCommit() {},
+    
     shouldSetTextContent() {
         return false;
     },
