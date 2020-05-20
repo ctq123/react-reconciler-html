@@ -22,6 +22,9 @@ let reconciler = ReactReconciler({
     appendChildToContainer(container, child) {},
     appendChild(parent, child) {},
     appendInitialChild(parent, child) {},
+    removeChildFromContainer(container, child) {},
+    removeChild(parent, child) {},
+    
 
     prepareUpdate(
         instance,
