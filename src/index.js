@@ -1,13 +1,11 @@
 import React from 'react';
-import ReactDomMini from './ReactDomMini';
+import MyReactDOM from './MyReactDOM';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDomMini.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+MyReactDOM.render(
+  <App />,
   document.getElementById('root')
 );
 
