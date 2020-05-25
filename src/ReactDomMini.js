@@ -44,6 +44,13 @@ let reconciler = ReactReconciler({
         newProps,
         finishedWork,
     ) {},
+
+    finalizeInitialChildren() {},
+    getChildHostContext() {},
+    getPublicInstance() {},
+    getRootHostContext() {},
+    prepareForCommit() {},
+    resetAfterCommit() {},
     
     shouldSetTextContent() {
         return false;
