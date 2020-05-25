@@ -1,67 +1,62 @@
 import ReactReconciler from 'react-reconciler';
 
-let reconciler = ReactReconciler({
-    /** configuration for how to talk to host enviroment */
-    supportsMutation: true,
+const reconciler = ReactReconciler({
+  supportsMutation: true,
 
-    createInstance(
-        type,
-        props,
-        rootContainerInstance,
-        hostContext,
-        internalInstanceHandle,
-    ) {
-        console.log(type, props);
-    },
-    createTextInstance(
-        text,
-        rootContainerInstance,
-        hostContext,
-        internalInstanceHandle,
-    ) {},
-    appendChildToContainer(container, child) {},
-    appendChild(parent, child) {},
-    appendInitialChild(parent, child) {},
-    removeChildFromContainer(container, child) {},
-    removeChild(parent, child) {},
-    insertInContainerBefore(container, child, beforeChild) {},
-    insertBefore(container, child, beforeChild) {},
+  createInstance(
+      type,
+      props,
+      rootContainerInstance,
+      hostContext,
+      internalInstanceHandle,
+  ) {
+      console.log(type, props);
+  },
+  createTextInstance(
+      text,
+      rootContainerInstance,
+      hostContext,
+      internalInstanceHandle,
+  ) {},
+  appendChildToContainer(container, child) {},
+  appendChild(parent, child) {},
+  appendInitialChild(parent, child) {},
+  removeChildFromContainer(container, child) {},
+  removeChild(parent, child) {},
+  insertInContainerBefore(container, child, beforeChild) {},
+  insertBefore(container, child, beforeChild) {},
 
-    prepareUpdate(
-        instance,
-        type,
-        oldProps,
-        newProps,
-        rootContainerInstance,
-        currentHostContext,
-    ) {},
+  prepareUpdate(
+      instance,
+      type,
+      oldProps,
+      newProps,
+      rootContainerInstance,
+      currentHostContext,
+  ) {},
 
-    commitUpdate(
-        instance,
-        updatePayload,
-        type,
-        oldProps,
-        newProps,
-        finishedWork,
-    ) {},
-
-    finalizeInitialChildren() {},
-    getChildHostContext() {},
-    getPublicInstance() {},
-    getRootHostContext() {},
-    prepareForCommit() {},
-    resetAfterCommit() {},
-    
-    shouldSetTextContent() {
-        return false;
-    },
+  commitUpdate(
+      instance,
+      updatePayload,
+      type,
+      oldProps,
+      newProps,
+      finishedWork,
+  ) {},
+  
+  getRootHostContext() {},
+  getChildHostContext() {},
+  prepareForCommit() {},
+  resetAfterCommit() {},
+  finalizeInitialChildren() {},
+  shouldSetTextContent() {},
 });
 
-let ReactDomMini = {
-    render(whatToRender, div) {
-        let container = reconciler.createContainer(div, false, false);
-        reconciler.updateContainer(whatToRender, container, null, null);
-    },
+const MyReactDOM = {
+  render(reactCom, div) {
+    const container = reconciler.createContainer(div, false, false);
+    reconciler.updateContainer(reactCom, container, null, null);
+  }  
 };
 
-export default ReactDomMini;
+export default MyReactDOM;

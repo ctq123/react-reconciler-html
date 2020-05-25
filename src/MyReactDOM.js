@@ -43,16 +43,13 @@ const reconciler = ReactReconciler({
       newProps,
       finishedWork,
   ) {},
-
-  // getRootHostContext() {},
-  // getChildHostContext() {},
-  // prepareForCommit() {},
-  // resetAfterCommit() {},
-  // finalizeInitialChildren() {},
-
-  shouldSetTextContent() {
-      return false;
-  },
+  
+  getRootHostContext() {},
+  getChildHostContext() {},
+  prepareForCommit() {},
+  resetAfterCommit() {},
+  finalizeInitialChildren() {},
+  shouldSetTextContent() {},
 });
 
 const MyReactDOM = {
