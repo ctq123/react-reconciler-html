@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import ReactDomMini from './ReactDomMini';
 import './index.css';
 import App from './App';
