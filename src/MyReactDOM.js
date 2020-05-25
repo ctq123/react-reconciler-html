@@ -11,16 +11,32 @@ const reconciler = ReactReconciler({
       internalInstanceHandle,
   ) {
       console.log(type, props);
+      let ele = document.createElement(type);
+
+      ['src', 'className', 'alt', 'href', 'target', 'rel'].forEach(k => {
+        if (props[k]) ele[k] = props[k]
+      });
+
+      return ele;
   },
   createTextInstance(
       text,
       rootContainerInstance,
       hostContext,
       internalInstanceHandle,
-  ) {},
-  appendChildToContainer(container, child) {},
-  appendChild(parent, child) {},
-  appendInitialChild(parent, child) {},
+  ) {
+    return document.createTextNode(text);
+  },
+  appendChildToContainer(container, child) {
+    container.appendChild(child);
+  },
+  appendChild(parent, child) {
+    parent.appendChild(child);
+  },
+  appendInitialChild(parent, child) {
+    parent.appendChild(child);
+  },
+  
   removeChildFromContainer(container, child) {},
   removeChild(parent, child) {},
   insertInContainerBefore(container, child, beforeChild) {},
@@ -43,7 +59,7 @@ const reconciler = ReactReconciler({
       newProps,
       finishedWork,
   ) {},
-  
+
   getRootHostContext() {},
   getChildHostContext() {},
   prepareForCommit() {},
